@@ -1,3 +1,7 @@
-# Add whatever it is needed to interface with the DB Table corso
-
+import mysql.connector
 from database.DB_connect import get_connection
+
+class CorsoDAO:
+
+    def getCorsi(self):
+        pass
