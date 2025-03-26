@@ -1,4 +1,5 @@
 import mysql.connector
+import database.DB_connect as db
 
 class corsoDAO:
 
@@ -6,13 +7,8 @@ class corsoDAO:
         pass
 
     def getCorsi(self):
-        cnx = mysql.connector.connect(
-                                        user="root",
-                                        password="rootroot",
-                                        host="127.0.0.1",
-                                        database="iscritticorsi",
-        )
 
+        cnx = db.get_connection()
         cursor = cnx.cursor(dictionary=True)
         query="""SELECT * FROM corso"""
         cursor.execute(query)
