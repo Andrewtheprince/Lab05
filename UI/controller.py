@@ -8,4 +8,7 @@ class Controller:
     def caricaCorsi(self):
         self.listaCorsi = self._model.getCorsi()
         for corso in self.listaCorsi:
-            self._view._tendinaCorsi.controls.append(ft.dropdown.Option(key=corso.codins, text=corso.__str__()))
+            self._view._tendinaCorsi.options.append(ft.dropdown.Option(key=corso.codins, text=corso.__str__()))
+
+    def cercaIscritti(self, e):
+        pass

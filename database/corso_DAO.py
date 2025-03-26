@@ -8,14 +8,13 @@ class corsoDAO:
     def getCorsi(self):
         cnx = mysql.connector.connect(
                                         user="root",
-                                        password="root",
+                                        password="rootroot",
                                         host="127.0.0.1",
                                         database="iscritticorsi",
-                                        auth_plugin="mysql_native_password"
         )
 
         cursor = cnx.cursor(dictionary=True)
-        query="""SELECT (codins, crediti, nome, pd) FROM corso"""
+        query="""SELECT * FROM corso"""
         cursor.execute(query)
         listaCorsi =[]
         for row in cursor:

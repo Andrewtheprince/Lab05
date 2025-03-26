@@ -30,7 +30,7 @@ class View(ft.UserControl):
         self._titolo = ft.Text("App Gestione Studenti", color="blue", size=24)
         self._tendinaCorsi = ft.Dropdown(label="Selezionare un corso", width=400)
         self._controller.caricaCorsi()
-        self._btnCercaIscritti = ft.ElevatedButton("Cerca Iscritti", width=190)
+        self._btnCercaIscritti = ft.ElevatedButton("Cerca Iscritti", width=190, on_click=self._controller.cercaIscritti)
         self._txtInMatricola = ft.TextField(label="Matricola", width=190)
         self._txtInNome = ft.TextField(label="Nome",disabled=True, width=190)
         self._txtInCognome = ft.TextField(label="Cognome",disabled=True, width=200)
