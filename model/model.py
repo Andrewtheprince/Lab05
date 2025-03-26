@@ -1,12 +1,15 @@
 import database.corso_DAO as cd
 from model.corso import Corso
+from model.studente import Studente
+import database.studente_DAO as sd
 
 class Model:
     def __init__(self):
-        self.CorsoDao = cd.corsoDAO()
+        self.corsoDao = cd.corsoDAO()
+        self.studenteDao = sd.studenteDAO()
 
     def getCorsi(self):
-        listaCorsi = self.CorsoDao.getCorsi()
+        listaCorsi = self.corsoDao.getCorsi()
         listaCorsiAggiornata =[]
         for row in listaCorsi:
             corso = Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
@@ -14,4 +17,13 @@ class Model:
         return listaCorsiAggiornata
 
     def getStudenti(self, corsoSelezionato):
-        return []
+        listaStudenti = self.studenteDao.getStudentiCorso(corsoSelezionato)
+        listaStudentiAggiornata = []
+        for row in listaStudenti:
+            if "cds" in row:
+                studente = Studente(row["matricola"], row["cognome"], row["nome"], row["cds"])
+            else:
+                studente = Studente(row["matricola"], row["cognome"], row["nome"], "Non definito")
+            listaStudentiAggiornata.append(studente)
+        return listaStudentiAggiornata
+

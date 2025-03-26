@@ -1,5 +1,3 @@
-from oauthlib.uri_validate import query
-
 from database.DB_connect import get_connection
 import mysql.connector
 
@@ -11,4 +9,12 @@ class studenteDAO:
     def getStudentiCorso(self, corso):
         cnx = get_connection()
         cursor = cnx.cursor(dictionary=True)
-        query = """ SELECT * FROM """
+        query = """ select *
+                    from iscrizione i, studente s
+                    where i.codins = %s and i.matricola = s.matricola """
+        cursor.execute(query, (corso,))
+        listaStudenti = []
+        for row in cursor:
+            listaStudenti.append(row)
+        cursor.close()
+        return listaStudenti

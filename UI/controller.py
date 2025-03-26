@@ -18,5 +18,4 @@ class Controller:
         studentiCorso = self._model.getStudenti(corsoSelezionato)
         for studente in studentiCorso:
             self._view._txtOut.controls.append(ft.Text(studente.__str__()))
-
         self._view.update_page()
