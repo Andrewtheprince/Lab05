@@ -12,3 +12,6 @@ class Model:
             corso = Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
             listaCorsiAggiornata.append(corso)
         return listaCorsiAggiornata
+
+    def getStudenti(self, corsoSelezionato):
+        return []
