@@ -18,3 +18,7 @@ class studenteDAO:
             listaStudenti.append(row)
         cursor.close()
         return listaStudenti
+
+    def getStudente(self, matricola):
+        #terminare qua quello che serve per trovare lo studente dalla matricola
+        pass
