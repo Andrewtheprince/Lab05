@@ -17,8 +17,31 @@ class studenteDAO:
         for row in cursor:
             listaStudenti.append(row)
         cursor.close()
+        cnx.close()
         return listaStudenti
 
     def getStudente(self, matricola):
-        #terminare qua quello che serve per trovare lo studente dalla matricola
-        pass
+        cnx = get_connection()
+        cursor = cnx.cursor(dictionary = True)
+        query = """ select *
+                    from studente s
+                    where s.matricola = %s """
+        cursor.execute(query, (matricola,))
+        studente = "None"
+        for row in cursor:
+            studente = [row["matricola"], row["cognome"], row["nome"]]
+        cursor.close()
+        cnx.close()
+        return studente
+
+    def iscrivi(self, codins, matricola):
+        cnx = get_connection()
+        cursor = cnx.cursor(dictionary=True)
+        query = """ INSERT INTO iscrizione
+                    (matricola, codins)
+                    VALUES (%s, %s) """
+        cursor.execute(query, (matricola, codins))
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+

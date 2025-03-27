@@ -31,11 +31,17 @@ class Model:
         studente = self.studenteDao.getStudente(matricola)
         if studente == "None":
             return "None"
-        studente1 = None
-        for row in studente:
-            if "cds" in row:
-                studente1 = Studente(row["matricola"], row["cognome"], row["nome"], row["cds"])
-            else:
-                studente1 = Studente(row["matricola"], row["cognome"], row["nome"], "Non definito")
+        studente1 = Studente(studente[0], studente[1], studente[2], "Non definito")
         return studente1
+
+    def corsiStudente(self, matricola):
+        listaCorsi = self.corsoDao.corsiStudente(matricola)
+        listaCorsiAggiornata = []
+        for row in listaCorsi:
+            corso = Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
+            listaCorsiAggiornata.append(corso)
+        return listaCorsiAggiornata
+
+    def iscrivi(self, corsoSelezionato, matricola):
+        self.studenteDao.iscrivi(corsoSelezionato, matricola)
 
